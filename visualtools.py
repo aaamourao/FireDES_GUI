@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QGridLayout, QToolButton
+from PyQt5.QtWidgets import QWidget, QGridLayout, QToolButton, QSizePolicy
 from PyQt5.QtGui import QIcon
 
 
@@ -6,6 +6,10 @@ class VisualTools(QWidget):
 
     def __init__(self, *args, **kwargs):
         super(VisualTools, self).__init__(*args, **kwargs)
+        self.setGeometry(6, 6, 511, 144)
+        self.layout = QGridLayout()
+        self.setLayout(self.layout)
+
         self._setup_button = QToolButton()
         self._alphabet_button = QToolButton()
         self._state_button = QToolButton()
@@ -14,15 +18,18 @@ class VisualTools(QWidget):
         self._trans_button = QToolButton()
         self._select_button = QToolButton()
         self._move_button = QToolButton()
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed,
+                QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(
+                self.sizePolicy().hasHeightForWidth())
+
+        self.setSizePolicy(sizePolicy)
 
         self.initUI()
 
     def initUI(self):
-        self.setGeometry(6, 6, 511, 144)
-
-        layout = QGridLayout()
-        self.setLayout(layout)
-
         self._setup_button.setToolTip('New event')
         self._setup_button.setIcon(QIcon('./icons/settings/normal_on.svg'))
 
@@ -47,12 +54,13 @@ class VisualTools(QWidget):
         self._move_button.setToolTip('move')
         self._move_button.setIcon(QIcon('./icons/mover/normal_on.svg'))
 
-        layout.addWidget(self._setup_button, 1, 1)
-        layout.addWidget(self._alphabet_button, 1, 2)
-        layout.addWidget(self._state_button, 1, 3)
-        layout.addWidget(self._istate_button, 2, 1)
-        layout.addWidget(self._fstate_button, 2, 2)
-        layout.addWidget(self._trans_button, 2, 3)
-        layout.addWidget(self._select_button, 3, 1)
-        layout.addWidget(self._move_button, 3, 2)
+        self.layout.addWidget(self._setup_button, 1, 1)
+        self.layout.addWidget(self._alphabet_button, 1, 2)
+        self.layout.addWidget(self._state_button, 1, 3)
+        self.layout.addWidget(self._istate_button, 2, 1)
+        self.layout.addWidget(self._fstate_button, 2, 2)
+        self.layout.addWidget(self._trans_button, 2, 3)
+        self.layout.addWidget(self._select_button, 3, 1)
+        self.layout.addWidget(self._move_button, 3, 2)
+
 

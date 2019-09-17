@@ -1,4 +1,6 @@
 __pycache__/
 activate
+# virtual envs
 src/
+venv/
 tags
