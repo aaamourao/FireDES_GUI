@@ -4,8 +4,9 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, \
         QStatusBar, QAction, QSizePolicy
 import sys
 from visualtools import VisualTools
-from automata_grid import AutomataGrid
+from automatagrid import AutomataGrid
 from itemlist import ItemList
+from terminal import Terminal
 
 
 class MainWindow(QMainWindow):
@@ -25,11 +26,14 @@ class MainWindow(QMainWindow):
 
         self.menuBarSetup()
 
-        self.automata_grid = AutomataGrid(self.centralWidget)
-        self.layout.addWidget(self.automata_grid, 0, 1)
-        # self.item_list = ItemList(self.centralWidget)
+        self.automataGrid = AutomataGrid(self.centralWidget)
+        self.layout.addWidget(self.automataGrid, 0, 1)
 
-        # self.layout.addWidget(self.item_list, 1, 3)
+        self.itemList = ItemList(self.centralWidget)
+        self.layout.addWidget(self.itemList, 0, 2)
+
+        self.terminal = Terminal(self.centralWidget)
+        self.layout.addWidget(self.terminal, 1, 0, 1, 3)
 
     def centralWidgetSetup(self):
         self.setCentralWidget(self.centralWidget)
